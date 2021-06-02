@@ -11,7 +11,12 @@ toc_footers:
 
 includes:
   - orders
-  - order_items
+  - transactions
+  - products
+  - groups
+  - menus
+  - customers
+  - notifications
 
 search: true
 
