@@ -329,9 +329,30 @@
                     <a href="#create-an-order" class="toc-h2 toc-link" data-title="Create an Order">Create an Order</a>
                   </li>
                   <li>
+                    <a href="#update-an-order" class="toc-h2 toc-link" data-title="Update an Order">Update an Order</a>
+                  </li>
+                  <li>
                     <a href="#delete-an-order" class="toc-h2 toc-link" data-title="Delete an Order">Delete an Order</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#transactions" class="toc-h1 toc-link" data-title="Transactions">Transactions</a>
+          </li>
+          <li>
+            <a href="#products" class="toc-h1 toc-link" data-title="Products">Products</a>
+          </li>
+          <li>
+            <a href="#groups" class="toc-h1 toc-link" data-title="Groups">Groups</a>
+          </li>
+          <li>
+            <a href="#menus" class="toc-h1 toc-link" data-title="Menus">Menus</a>
+          </li>
+          <li>
+            <a href="#customers" class="toc-h1 toc-link" data-title="Customers">Customers</a>
+          </li>
+          <li>
+            <a href="#notifications" class="toc-h1 toc-link" data-title="Notifications">Notifications</a>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -402,34 +423,47 @@ and get an API Token.</p>
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">19440</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fuga neque velit eos."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dolorem doloribus magni dolor."</span><span class="p">,</span><span class="w">
         </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"some"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info about this"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nl">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poutine"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kids"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T21:01:36.149Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T21:01:36.149Z"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicken Fajitas"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beauty"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.822Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:15.885Z"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">66248</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">66248</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"transaction_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stripe_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_1IxgiK2eZvKYlo2CpTEzk6ra"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:40.253Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:35:28.977Z"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
     </span><span class="nl">"tax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"tip"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"hello"</span><span class="p">:</span><span class="w"> </span><span class="s2">"world"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Soluta maiores et exercitationem."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eveniet vitae voluptatum quod."</span><span class="p">,</span><span class="w">
     </span><span class="nl">"seen_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"funded_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T22:23:52.520Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T22:23:52.553Z"</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.756Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:25:16.462Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h3 id='http-request'>HTTP Request</h3>
@@ -476,7 +510,7 @@ and get an API Token.</p>
 </tbody></table>
 
 <aside class="notice">
-  Don't forget to URL encode your Date/time params.
+  Don't forget to URL encode your params. Especially Dates and Datetimes.
 </aside>
 <h2 id='get-an-order'>Get an Order</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
   <span class="s2">"http://localhost:3000/orders/</span><span class="si">#{</span><span class="n">order_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
@@ -497,34 +531,47 @@ and get an API Token.</p>
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
   </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">19440</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fuga neque velit eos."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dolorem doloribus magni dolor."</span><span class="p">,</span><span class="w">
       </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"some"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info about this"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nl">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poutine"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kids"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T21:01:36.149Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T21:01:36.149Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicken Fajitas"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beauty"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.822Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:15.885Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">66248</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">66248</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"transaction_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stripe_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_1IxgiK2eZvKYlo2CpTEzk6ra"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:40.253Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:35:28.977Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
   </span><span class="nl">"tax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="nl">"tip"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"hello"</span><span class="p">:</span><span class="w"> </span><span class="s2">"world"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Soluta maiores et exercitationem."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eveniet vitae voluptatum quod."</span><span class="p">,</span><span class="w">
   </span><span class="nl">"seen_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"funded_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"delivered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T22:23:52.520Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T22:23:52.553Z"</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.756Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:25:16.462Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET http://localhost:3000/orders/[order_id]</code></p>
@@ -563,34 +610,47 @@ and get an API Token.</p>
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
   </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">19440</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fuga neque velit eos."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dolorem doloribus magni dolor."</span><span class="p">,</span><span class="w">
       </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"some"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info about this"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nl">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poutine"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kids"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T21:01:36.149Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T21:01:36.149Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicken Fajitas"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beauty"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.822Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:15.885Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">66248</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">66248</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"transaction_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stripe_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_1IxgiK2eZvKYlo2CpTEzk6ra"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:40.253Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:35:28.977Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">41398</span><span class="p">,</span><span class="w">
   </span><span class="nl">"tax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="nl">"tip"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"hello"</span><span class="p">:</span><span class="w"> </span><span class="s2">"world"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Note."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eveniet vitae voluptatum quod."</span><span class="p">,</span><span class="w">
   </span><span class="nl">"seen_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"funded_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"delivered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T22:23:52.520Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T22:23:52.553Z"</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.756Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:25:16.462Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST http://localhost:3000/orders</code></p>
@@ -655,33 +715,92 @@ and get an API Token.</p>
 <td>Array</td>
 </tr>
 </tbody></table>
-<h3 id='orderitem-parameters'>OrderItem Parameters</h3>
+<h3 id='orderitems-parameters'>OrderItems Parameters</h3>
 <p>OrderItem Parameters are an Array of objects held within the <code>order_items</code> key of
-the <code>order</code> key of your POST data</p>
+the <code>order</code> key of your POST data.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
 <th>Type</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>product_id</td>
 <td></td>
 <td>Integer</td>
+<td>true</td>
 </tr>
 <tr>
 <td>amount</td>
-<td>Amount in cents</td>
+<td>In cents</td>
 <td>Integer</td>
+<td>true</td>
 </tr>
 <tr>
 <td>note</td>
 <td></td>
 <td>String</td>
+<td>false</td>
 </tr>
 </tbody></table>
+<h3 id='transactions-parameters'>Transactions Parameters</h3>
+<p>Transactions Paramaters are an Array of objects held within the <code>Transactions</code> key
+of the <code>order</code> key of your POST data.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_number</td>
+<td></td>
+<td>String</td>
+<td>true</td>
+</tr>
+<tr>
+<td>card_expiration</td>
+<td>Amount in cents</td>
+<td>String</td>
+<td>true</td>
+</tr>
+<tr>
+<td>card_ccv</td>
+<td></td>
+<td>String</td>
+<td>true</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>In cents</td>
+<td>Integer</td>
+<td>false</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+When creating an Order with valid Transaction params, where the :amount of the Transaction
+is not provided, it will be assumed that the Transaction :amount is the full :amount
+of the Order.
+</aside>
+<h3 id='errors'>Errors</h3>
+<p>Errors are returned as a JSON Array with keys of attribute names, and values of
+Arrays of related Errors.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Amount must be positive"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Product cannot be blank"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='update-an-order'>Update an Order</h2>
+<p>There is currently no way to update an Order, though you can create Refund Transactions
+via the <code>/transactions</code> endpoint.</p>
 <h2 id='delete-an-order'>Delete an Order</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span>
     <span class="s2">"</span><span class="si">#{</span><span class="n">url_base</span><span class="si">}</span><span class="s2">/orders/[order_id]"</span><span class="p">,</span>
     <span class="ss">authorization: </span><span class="s2">"Token </span><span class="si">#{</span><span class="vi">@token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
@@ -712,7 +831,7 @@ the <code>order</code> key of your POST data</p>
 <td>The ID of the Order to delete</td>
 </tr>
 </tbody></table>
-
+<h1 id='transactions'>Transactions</h1><h1 id='products'>Products</h1><h1 id='groups'>Groups</h1><h1 id='menus'>Menus</h1><h1 id='customers'>Customers</h1><h1 id='notifications'>Notifications</h1>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
