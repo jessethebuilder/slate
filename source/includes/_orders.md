@@ -1,27 +1,18 @@
 # Orders
 
-## Get Many Orders
+## Get Orders
 
 ```ruby
   RestClient.get(
     "http://localhost:3000/orders",
-    authorization: "Token #{@token}",
+    authorization: "Token <auth_token>",
     accept: :json
   )
 ```
+
 ```shell
 curl "http://localhost:3000/orders.json" \
-  -H "Authorization: Token test_token"
-```
-```elixir
-HTTPoison.get!(
-  "http://localhost:3000/orders",
-  [
-    "Authorization": "Token test_token",
-    "ACCEPT": "application/json",
-    "Content-Type": "application/json"
-  ]
-)
+  -H "Authorization: Token <auth_token>"
 ```
 
 > The above command returns a status of 200 and JSON structured like this:
@@ -43,6 +34,8 @@ HTTPoison.get!(
         "product_name": "Chicken Fajitas",
         "group_id": 7,
         "group_name": "Beauty",
+        "menu_id": 2,
+        "menu_name": "Necessities",
         "created_at": "2021-06-02T03:48:21.822Z",
         "updated_at": "2021-06-02T04:29:15.885Z"
       }
@@ -100,26 +93,17 @@ created_before | null | Returns Orders before the Date or Datetime provided | yy
 ```ruby
 RestClient.get(
   "http://localhost:3000/orders/#{order_id}",
-  authorization: "Token #{@token}",
+  authorization: "Token <auth_token>",
   accept: :json
 )
 ```
 
 ```shell
-curl "http://localhost:3000/orders/[order_id].json" \
-  -H "Authorization: Token test_token"
+curl "http://localhost:3000/orders/<order_id>.json" \
+  -H "Authorization: Token <auth_token>"
 ```
 
-```elixir
-HTTPoison.get!(
-  "http://localhost:3000/orders/[order_id]",
-  [
-    "Authorization": "Token token_test",
-    "ACCEPT": "application/json",
-    "Content-Type": "application/json"
-  ]
-)
-```
+> The above command returns a status of 200 and JSON structured like this:
 
 ```json
 {
@@ -137,6 +121,8 @@ HTTPoison.get!(
       "product_name": "Chicken Fajitas",
       "group_id": 7,
       "group_name": "Beauty",
+      "menu_id": 2,
+      "menu_name": "Necessities",
       "created_at": "2021-06-02T03:48:21.822Z",
       "updated_at": "2021-06-02T04:29:15.885Z"
     }
@@ -172,21 +158,31 @@ HTTPoison.get!(
 
 ### HTTP Request
 
-`GET http://localhost:3000/orders/[order_id]`
+`GET http://localhost:3000/orders/<order_id>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-order_id | The ID of the Order
+*order_id | The ID of the Order
 
 ## Create an Order
 
 ```ruby
 RestClient.post(
   "http://localhost:3000/orders",
-  {order: note: 'A Note.'},
-  authorization: "Token #{@token}",
+  {
+    order: {
+      note: 'A Note.'
+      order_items: [
+        {
+          amount: 1000,
+          product_id: 3
+        }
+      ]
+    }
+  },
+  authorization: "Token <auth_token>",
   accept: :json
 )
 ```
@@ -195,20 +191,10 @@ RestClient.post(
 curl "http://localhost:3000/orders.json" \
   -X POST \
   -d 'order[note]=A Note.' \
-  -H "Authorization: Token test_token"
+  -H "Authorization: Token <auth_token>"
 ```
 
-```elixir
-HTTPoison.post!(
-  "http://localhost:3000/orders",
-  %{order: %{note: 'A Note.'}},
-  [
-    "Authorization": "Token test_token",
-    "ACCEPT": "application/json",
-    "Content-Type": "application/json"
-  ]
-)
-```
+> The above command returns a status of 201 and JSON structured like this:
 
 ```json
 {
@@ -226,6 +212,8 @@ HTTPoison.post!(
       "product_name": "Chicken Fajitas",
       "group_id": 7,
       "group_name": "Beauty",
+      "menu_id": 2,
+      "menu_name": "Necessities",
       "created_at": "2021-06-02T03:48:21.822Z",
       "updated_at": "2021-06-02T04:29:15.885Z"
     }
@@ -285,11 +273,12 @@ order_items | See below | Array
 OrderItem Parameters are an Array of objects held within the `order_items` key of
 the `order` key of your POST data.
 
+Total of OrderItems (and thus Order) must be no less than 50 (cents)
 
-Parameter | Description | Type | Required
---------- | ----------- | ---- | --------
-product_id | | Integer | true
-amount | In cents | Integer | true
+Parameter | Description | Type
+--------- | ----------- | ----
+*product_id | | Integer
+*amount | In cents | Integer
 note | | String | false
 
 ### Transactions Parameters
@@ -297,17 +286,21 @@ note | | String | false
 Transactions Paramaters are an Array of objects held within the `Transactions` key
 of the `order` key of your POST data.
 
-Parameter | Description | Type | Required
---------- | ----------- | ---- | --------
+Either a `stripe_token` OR a `card_number` AND `card_expiration` AND `card_ccv`
+must be supplied.
+
+Parameter | Description | Type
+--------- | ----------- | ----
+amount | In cents | Integer
 card_number | | String | true
-card_expiration | Amount in cents | String | true
-card_ccv | | String | true
-amount | In cents | Integer | false
+card_expiration | Amount in cents | String
+card_ccv | | String
+stripe_token | | String
 
 <aside class="notice">
-When creating an Order with valid Transaction params, where the :amount of the Transaction
-is not provided, it will be assumed that the Transaction :amount is the full :amount
-of the Order.
+  When creating an Order with valid Transaction params, where the :amount of the Transaction
+  is not provided, it will be assumed that the Transaction :amount is the full :amount
+  of the Order.
 </aside>
 
 ### Errors
@@ -333,34 +326,26 @@ via the `/transactions` endpoint.
 
 ```ruby
   RestClient.delete(
-    "#{url_base}/orders/[order_id]",
-    authorization: "Token #{@token}",
+    "http://localhost:3000/orders/<order_id>",
+    authorization: "Token <auth_token>",
     accept: :json
   )
 ```
+
 ```shell
-curl "http://localhost:3000/orders/[order_id].json" \
+curl "http://localhost:3000/orders/<order_id>.json" \
   -X DELETE \
-  -H "Authorization: Token test_token"
+  -H "Authorization: Token <auth_token>"
 ```
 
-```elixir
-HTTPoison.delete!(
-  "http://localhost:3000/orders/[order_id]",
-  [
-    "Authorization": "Token test_token",
-    "ACCEPT": "application/json",
-    "Content-Type": "application/json"
-  ]
-)
-```
+> The above command returns a status of 204 and NOTHING
 
 ### HTTP Request
 
-`DELETE http://localhost:3000/orders/[order_id]`
+`DELETE http://localhost:3000/orders/<order_id>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the Order to delete
+*ID | The ID of the Order to delete

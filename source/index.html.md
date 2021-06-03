@@ -2,9 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
   - ruby
-  - elixir
 
 toc_footers:
   - <a href='http://localhost:3000.com'>Sign Up for a Developer Key</a>
@@ -32,7 +30,7 @@ Developers and designers can focus on domain specifics while still being able to
 save and create orders, send notifications to app-owners and customers, process
 payments, and store/serve data commerce-related data via this API.
 
-Please see [The Forge](http://localhost:3000.com) for detials on how to set up an Account
+Please see [The Forge](http://localhost:3000.com) for details on how to set up an Account
 and get an API Token.
 
 # Authentication
@@ -40,23 +38,23 @@ and get an API Token.
 > To authorize, use this code:
 
 ```shell
-curl "http://localhost:3000/[api_endpoint].json" \
-  -H "Authorization: Token test_token"
+curl "http://localhost:3000/<api_endpoint>.json" \
+  -H "Authorization: Token <auth_token>"
 ```
 
 ```ruby
   RestClient.get(
-    "http://localhost:3000/[api_endpoint]",
-    authorization: "Token #{@token}",
+    "http://localhost:3000/<api_endpoint>",
+    authorization: "Token <auth_token>",
     accept: :json
   )
 ```
 
 ```elixir
 HTTPoison.get!(
-  "http://localhost:3000/[api_endpoint]",
+  "http://localhost:3000/<api_endpoint>",
   [
-    "Authorization": "Token test_token",
+    "Authorization": "Token <auth_token>",
     "ACCEPT": "application/json",
     "Content-Type": "application/json"
   ]
@@ -65,8 +63,8 @@ HTTPoison.get!(
 
 The Forge expects the API Token to be included in all API requests:
 
-`Authorization: Token test_token`
+`Authorization: Token <auth_token>`
 
 <aside class="notice">
-  Replace "test_token" with your API Token in API calls.
+  Replace "<auth_token>" with your API Token in API calls.
 </aside>
