@@ -291,7 +291,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;elixir&quot;]">
+  <body class="index" data-languages="[&quot;ruby&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -301,9 +301,7 @@
     <div class="toc-wrapper">
       <h1 style="color:white;">The Forge API</h1>
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="elixir">elixir</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -320,7 +318,7 @@
             <a href="#orders" class="toc-h1 toc-link" data-title="Orders">Orders</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-many-orders" class="toc-h2 toc-link" data-title="Get Many Orders">Get Many Orders</a>
+                    <a href="#get-orders" class="toc-h2 toc-link" data-title="Get Orders">Get Orders</a>
                   </li>
                   <li>
                     <a href="#get-an-order" class="toc-h2 toc-link" data-title="Get an Order">Get an Order</a>
@@ -338,9 +336,31 @@
           </li>
           <li>
             <a href="#transactions" class="toc-h1 toc-link" data-title="Transactions">Transactions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-transaction" class="toc-h2 toc-link" data-title="Create a Transaction">Create a Transaction</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#products" class="toc-h1 toc-link" data-title="Products">Products</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-products" class="toc-h2 toc-link" data-title="Get Products">Get Products</a>
+                  </li>
+                  <li>
+                    <a href="#get-product" class="toc-h2 toc-link" data-title="Get Product">Get Product</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-product" class="toc-h2 toc-link" data-title="Create a Product">Create a Product</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-product" class="toc-h2 toc-link" data-title="Update a Product">Update a Product</a>
+                  </li>
+                  <li>
+                    <a href="#delete-or-archive-a-product" class="toc-h2 toc-link" data-title="Delete (or Archive) a Product">Delete (or Archive) a Product</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#groups" class="toc-h1 toc-link" data-title="Groups">Groups</a>
@@ -370,23 +390,23 @@ and notification service for simple eCommerce applications.</p>
 save and create orders, send notifications to app-owners and customers, process
 payments, and store/serve data commerce-related data via this API.</p>
 
-<p>Please see <a href="http://localhost:3000.com">The Forge</a> for detials on how to set up an Account
+<p>Please see <a href="http://localhost:3000.com">The Forge</a> for details on how to set up an Account
 and get an API Token.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/[api_endpoint].json"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Token test_token"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/&lt;api_endpoint&gt;.json"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token &lt;auth_token&gt;"</span>
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
-    <span class="s2">"http://localhost:3000/[api_endpoint]"</span><span class="p">,</span>
-    <span class="ss">authorization: </span><span class="s2">"Token </span><span class="si">#{</span><span class="vi">@token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="s2">"http://localhost:3000/&lt;api_endpoint&gt;"</span><span class="p">,</span>
+    <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
     <span class="ss">accept: :json</span>
   <span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight elixir tab-elixir"><code><span class="no">HTTPoison</span><span class="o">.</span><span class="n">get!</span><span class="p">(</span>
-  <span class="s2">"http://localhost:3000/[api_endpoint]"</span><span class="p">,</span>
+  <span class="s2">"http://localhost:3000/&lt;api_endpoint&gt;"</span><span class="p">,</span>
   <span class="p">[</span>
-    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Token test_token"</span><span class="p">,</span>
+    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
     <span class="s2">"ACCEPT"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">,</span>
     <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span>
   <span class="p">]</span>
@@ -394,26 +414,18 @@ and get an API Token.</p>
 </code></pre></div>
 <p>The Forge expects the API Token to be included in all API requests:</p>
 
-<p><code>Authorization: Token test_token</code></p>
+<p><code>Authorization: Token &lt;auth_token&gt;</code></p>
 
 <aside class="notice">
-  Replace "test_token" with your API Token in API calls.
+  Replace "<auth_token>" with your API Token in API calls.
 </aside>
-<h1 id='orders'>Orders</h1><h2 id='get-many-orders'>Get Many Orders</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
+<h1 id='orders'>Orders</h1><h2 id='get-orders'>Get Orders</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
     <span class="s2">"http://localhost:3000/orders"</span><span class="p">,</span>
-    <span class="ss">authorization: </span><span class="s2">"Token </span><span class="si">#{</span><span class="vi">@token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
     <span class="ss">accept: :json</span>
   <span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/orders.json"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Token test_token"</span>
-</code></pre></div><div class="highlight"><pre class="highlight elixir tab-elixir"><code><span class="no">HTTPoison</span><span class="o">.</span><span class="n">get!</span><span class="p">(</span>
-  <span class="s2">"http://localhost:3000/orders"</span><span class="p">,</span>
-  <span class="p">[</span>
-    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Token test_token"</span><span class="p">,</span>
-    <span class="s2">"ACCEPT"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">,</span>
-    <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span>
-  <span class="p">]</span>
-<span class="p">)</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token &lt;auth_token&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns a status of 200 and JSON structured like this:</p>
@@ -434,6 +446,8 @@ and get an API Token.</p>
         </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicken Fajitas"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
         </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beauty"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Necessities"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.822Z"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:15.885Z"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -514,20 +528,16 @@ and get an API Token.</p>
 </aside>
 <h2 id='get-an-order'>Get an Order</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
   <span class="s2">"http://localhost:3000/orders/</span><span class="si">#{</span><span class="n">order_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-  <span class="ss">authorization: </span><span class="s2">"Token </span><span class="si">#{</span><span class="vi">@token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+  <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
   <span class="ss">accept: :json</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/orders/[order_id].json"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Token test_token"</span>
-</code></pre></div><div class="highlight"><pre class="highlight elixir tab-elixir"><code><span class="no">HTTPoison</span><span class="o">.</span><span class="n">get!</span><span class="p">(</span>
-  <span class="s2">"http://localhost:3000/orders/[order_id]"</span><span class="p">,</span>
-  <span class="p">[</span>
-    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Token token_test"</span><span class="p">,</span>
-    <span class="s2">"ACCEPT"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">,</span>
-    <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span>
-  <span class="p">]</span>
-<span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/orders/&lt;order_id&gt;.json"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token &lt;auth_token&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a status of 200 and JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
   </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -542,6 +552,8 @@ and get an API Token.</p>
       </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicken Fajitas"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
       </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beauty"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Necessities"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.822Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:15.885Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -574,7 +586,7 @@ and get an API Token.</p>
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:25:16.462Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://localhost:3000/orders/[order_id]</code></p>
+<p><code>GET http://localhost:3000/orders/&lt;order_id&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -583,30 +595,35 @@ and get an API Token.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>order_id</td>
+<td>*order_id</td>
 <td>The ID of the Order</td>
 </tr>
 </tbody></table>
 <h2 id='create-an-order'>Create an Order</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span>
   <span class="s2">"http://localhost:3000/orders"</span><span class="p">,</span>
-  <span class="p">{</span><span class="ss">order: note: </span><span class="s1">'A Note.'</span><span class="p">},</span>
-  <span class="ss">authorization: </span><span class="s2">"Token </span><span class="si">#{</span><span class="vi">@token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="ss">order: </span><span class="p">{</span>
+      <span class="ss">note: </span><span class="s1">'A Note.'</span>
+      <span class="ss">order_items: </span><span class="p">[</span>
+        <span class="p">{</span>
+          <span class="ss">amount: </span><span class="mi">1000</span><span class="p">,</span>
+          <span class="ss">product_id: </span><span class="mi">3</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
   <span class="ss">accept: :json</span>
 <span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/orders.json"</span> <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'order[note]=A Note.'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Token test_token"</span>
-</code></pre></div><div class="highlight"><pre class="highlight elixir tab-elixir"><code><span class="no">HTTPoison</span><span class="o">.</span><span class="n">post!</span><span class="p">(</span>
-  <span class="s2">"http://localhost:3000/orders"</span><span class="p">,</span>
-  <span class="p">%{</span><span class="ss">order:</span> <span class="p">%{</span><span class="ss">note:</span> <span class="s1">'A Note.'</span><span class="p">}},</span>
-  <span class="p">[</span>
-    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Token test_token"</span><span class="p">,</span>
-    <span class="s2">"ACCEPT"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">,</span>
-    <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span>
-  <span class="p">]</span>
-<span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token &lt;auth_token&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a status of 201 and JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
   </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -621,6 +638,8 @@ and get an API Token.</p>
       </span><span class="nl">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicken Fajitas"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
       </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beauty"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Necessities"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.822Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:29:15.885Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -719,75 +738,76 @@ and get an API Token.</p>
 <p>OrderItem Parameters are an Array of objects held within the <code>order_items</code> key of
 the <code>order</code> key of your POST data.</p>
 
+<p>Total of OrderItems (and thus Order) must be no less than 50 (cents)</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
 <th>Type</th>
-<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>product_id</td>
+<td>*product_id</td>
 <td></td>
 <td>Integer</td>
-<td>true</td>
 </tr>
 <tr>
-<td>amount</td>
+<td>*amount</td>
 <td>In cents</td>
 <td>Integer</td>
-<td>true</td>
 </tr>
 <tr>
 <td>note</td>
 <td></td>
 <td>String</td>
-<td>false</td>
 </tr>
 </tbody></table>
 <h3 id='transactions-parameters'>Transactions Parameters</h3>
 <p>Transactions Paramaters are an Array of objects held within the <code>Transactions</code> key
 of the <code>order</code> key of your POST data.</p>
 
+<p>Either a <code>stripe_token</code> OR a <code>card_number</code> AND <code>card_expiration</code> AND <code>card_ccv</code>
+must be supplied.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
 <th>Type</th>
-<th>Required</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>amount</td>
+<td>In cents</td>
+<td>Integer</td>
+</tr>
 <tr>
 <td>card_number</td>
 <td></td>
 <td>String</td>
-<td>true</td>
 </tr>
 <tr>
 <td>card_expiration</td>
 <td>Amount in cents</td>
 <td>String</td>
-<td>true</td>
 </tr>
 <tr>
 <td>card_ccv</td>
 <td></td>
 <td>String</td>
-<td>true</td>
 </tr>
 <tr>
-<td>amount</td>
-<td>In cents</td>
-<td>Integer</td>
-<td>false</td>
+<td>stripe_token</td>
+<td></td>
+<td>String</td>
 </tr>
 </tbody></table>
 
 <aside class="notice">
-When creating an Order with valid Transaction params, where the :amount of the Transaction
-is not provided, it will be assumed that the Transaction :amount is the full :amount
-of the Order.
+  When creating an Order with valid Transaction params, where the :amount of the Transaction
+  is not provided, it will be assumed that the Transaction :amount is the full :amount
+  of the Order.
 </aside>
 <h3 id='errors'>Errors</h3>
 <p>Errors are returned as a JSON Array with keys of attribute names, and values of
@@ -802,23 +822,19 @@ Arrays of related Errors.</p>
 <p>There is currently no way to update an Order, though you can create Refund Transactions
 via the <code>/transactions</code> endpoint.</p>
 <h2 id='delete-an-order'>Delete an Order</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span>
-    <span class="s2">"</span><span class="si">#{</span><span class="n">url_base</span><span class="si">}</span><span class="s2">/orders/[order_id]"</span><span class="p">,</span>
-    <span class="ss">authorization: </span><span class="s2">"Token </span><span class="si">#{</span><span class="vi">@token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="s2">"http://localhost:3000/orders/&lt;order_id&gt;"</span><span class="p">,</span>
+    <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
     <span class="ss">accept: :json</span>
   <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/orders/[order_id].json"</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/orders/&lt;order_id&gt;.json"</span> <span class="se">\</span>
   <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Token test_token"</span>
-</code></pre></div><div class="highlight"><pre class="highlight elixir tab-elixir"><code><span class="no">HTTPoison</span><span class="o">.</span><span class="n">delete!</span><span class="p">(</span>
-  <span class="s2">"http://localhost:3000/orders/[order_id]"</span><span class="p">,</span>
-  <span class="p">[</span>
-    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Token test_token"</span><span class="p">,</span>
-    <span class="s2">"ACCEPT"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">,</span>
-    <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span>
-  <span class="p">]</span>
-<span class="p">)</span>
-</code></pre></div><h3 id='http-request-4'>HTTP Request</h3>
-<p><code>DELETE http://localhost:3000/orders/[order_id]</code></p>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token &lt;auth_token&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a status of 204 and NOTHING</p>
+</blockquote>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE http://localhost:3000/orders/&lt;order_id&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -827,17 +843,481 @@ via the <code>/transactions</code> endpoint.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
+<td>*ID</td>
 <td>The ID of the Order to delete</td>
 </tr>
 </tbody></table>
-<h1 id='transactions'>Transactions</h1><h1 id='products'>Products</h1><h1 id='groups'>Groups</h1><h1 id='menus'>Menus</h1><h1 id='customers'>Customers</h1><h1 id='notifications'>Notifications</h1>
+<h1 id='transactions'>Transactions</h1>
+<p>Transactions can only be created, according to the following rules:</p>
+
+<ol>
+<li><p>The Transaction must not be between -49 and 49 (so an absolute value of 50 or more).</p></li>
+<li><p>The first Transaction amount for an Order must be for the full amount of the Order total.</p></li>
+<li><p>All subsequent Transactions must be negative (refunds), and the absolute amount of refunds
+for a given Order cannot be more than the Order total (or the amount of the first Transaction).</p></li>
+</ol>
+<h2 id='create-a-transaction'>Create a Transaction</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span>
+  <span class="s2">"http://localhost:3000/transactions"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="ss">transaction: </span><span class="p">{</span>
+
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
+  <span class="ss">accept: :json</span>
+<span class="p">)</span>
+</code></pre></div>
+<!-- ```shell
+curl "http://localhost:3000/transactions.json" \
+  -X POST \
+  -d 'order[note]=A Note.' \
+  -H "Authorization: Token <auth_token>"
+``` -->
+
+<blockquote>
+<p>The above command returns a status of 201 and JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transaction_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"stripe_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_1IxgiK2eZvKYlo2CpTEzk6ra"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:21.756Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T04:25:16.462Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://localhost:3000/orders/&lt;order_id&gt;/transactions</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*order_id</td>
+<td>The ID of the Order</td>
+</tr>
+</tbody></table>
+<h3 id='transaction-parameters'>Transaction Parameters</h3>
+<p>Transaction Parameters must be in the <code>transaction</code> key of your POST data</p>
+
+<p>Either a <code>stripe_token</code> OR a <code>card_number</code> AND <code>card_expiration</code> AND <code>card_ccv</code>
+must be supplied.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*amount</td>
+<td>In cents</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>card_number</td>
+<td></td>
+<td>String</td>
+</tr>
+<tr>
+<td>card_expiration</td>
+<td>Amount in cents</td>
+<td>String</td>
+</tr>
+<tr>
+<td>card_ccv</td>
+<td></td>
+<td>String</td>
+</tr>
+<tr>
+<td>stripe_token</td>
+<td></td>
+<td>String</td>
+</tr>
+</tbody></table>
+<h3 id='errors'>Errors</h3>
+<p>Errors are returned as a JSON Array with keys of attribute names, and values of
+Arrays of related Errors.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"must be no less than 50"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='products'>Products</h1><h2 id='get-products'>Get Products</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
+    <span class="s2">"http://localhost:3000/products"</span><span class="p">,</span>
+    <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
+    <span class="ss">accept: :json</span>
+  <span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/products.json"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token &lt;auth_token&gt;"</span>
+</code></pre></div><div class="highlight"><pre class="highlight elixir tab-elixir"><code><span class="no">HTTPoison</span><span class="o">.</span><span class="n">get!</span><span class="p">(</span>
+  <span class="s2">"http://localhost:3000/products"</span><span class="p">,</span>
+  <span class="p">[</span>
+    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
+    <span class="s2">"ACCEPT"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">,</span>
+    <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span>
+  <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a status of 200 and JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pho"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aut voluptatibus maxime. Id architecto ea. Sed assumenda quo."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">24935</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Industrial"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Reno"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"any"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:20.679Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:20.679Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://localhost:3000/api/products</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scope</td>
+<td>active</td>
+<td></td>
+<td>all, active, inactive, archived</td>
+</tr>
+</tbody></table>
+<h2 id='get-product'>Get Product</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
+    <span class="s2">"http://localhost:3000/products/&lt;product_id&gt;"</span><span class="p">,</span>
+    <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
+    <span class="ss">accept: :json</span>
+  <span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/products.json/&lt;product_id&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token &lt;auth_token&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a status of 200 and JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pho"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aut voluptatibus maxime. Id architecto ea. Sed assumenda quo."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">24935</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Industrial"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Reno"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"any"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:20.679Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:20.679Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://localhost:3000/api/products/&lt;product_id&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*product_id</td>
+<td>The ID of the Product</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-product'>Create a Product</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span>
+  <span class="s2">"http://localhost:3000/products"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="ss">product: </span><span class="p">{</span>
+      <span class="ss">name: </span><span class="s2">"Pho"</span><span class="p">,</span>
+      <span class="ss">description: </span><span class="s2">"Aut voluptatibus maxime. Id architecto ea. Sed assumenda quo."</span><span class="p">,</span>
+      <span class="ss">price: </span><span class="mi">24935</span><span class="p">,</span>
+      <span class="ss">group_id: </span><span class="mi">1</span><span class="p">,</span>
+      <span class="ss">menu_id: </span><span class="mi">1</span><span class="p">,</span>
+      <span class="ss">data: </span><span class="p">{</span><span class="s2">"any"</span> <span class="o">=&gt;</span> <span class="s2">"data"</span><span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
+  <span class="ss">accept: :json</span>
+<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/products.json"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'order[note]=A Note.'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token &lt;auth_token&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a status of 201 and JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pho"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aut voluptatibus maxime. Id architecto ea. Sed assumenda quo."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">24935</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Industrial"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Reno"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"any"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:20.679Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:20.679Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://localhost:3000/products</code></p>
+<h3 id='parameters'>Parameters</h3>
+<p>Product Parameters must be in the <code>product</code> key of your POST data</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td></td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>String</td>
+</tr>
+<tr>
+<td>*price</td>
+<td>in cents</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>active</td>
+<td>default to true</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Hash data</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>order</td>
+<td></td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>menu_id</td>
+<td></td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td></td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td></td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>menu_id</td>
+<td></td>
+<td>Integer</td>
+</tr>
+</tbody></table>
+<h3 id='errors'>Errors</h3>
+<p>Errors are returned as a JSON Array with keys of attribute names, and values of
+Arrays of related Errors.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"cannot be blank"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='update-a-product'>Update a Product</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span>
+  <span class="s2">"http://localhost:3000/products/&lt;product_id&gt;"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="ss">product: </span><span class="p">{</span>
+      <span class="ss">description: </span><span class="s2">"New description."</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
+  <span class="ss">accept: :json</span>
+<span class="p">)</span>
+</code></pre></div>
+<!-- ```shell
+curl "http://localhost:3000/products/<product_id>.json" \
+  -X POST \
+  -d 'order[note]=A Note.' \
+  -H "Authorization: Token <auth_token>"
+``` -->
+
+<blockquote>
+<p>The above command returns a status of 201 and JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pho"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New description."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">24935</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Industrial"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"menu_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"menu_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Reno"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"any"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:20.679Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-02T03:48:20.679Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PUT/PATCH http://localhost:3000/products/&lt;product_id&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*product_id</td>
+<td>The ID of the Product</td>
+</tr>
+</tbody></table>
+<h3 id='parameters-2'>Parameters</h3>
+<p>Product Parameters must be in the <code>product</code> key of your PUT/PATCH data</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td></td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>String</td>
+</tr>
+<tr>
+<td>*price</td>
+<td>in cents</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>active</td>
+<td>defaults to true</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>archived</td>
+<td>defaults to false</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Hash data</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>order</td>
+<td></td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>menu_id</td>
+<td></td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td></td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td></td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>menu_id</td>
+<td></td>
+<td>Integer</td>
+</tr>
+</tbody></table>
+<h3 id='errors-2'>Errors</h3>
+<p>Errors are returned as a JSON Array with keys of attribute names, and values of
+Arrays of related Errors.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"cannot be blank"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='delete-or-archive-a-product'>Delete (or Archive) a Product</h2>
+<p>A Product associated with ANY OrderItems will not be deleted, but will be archived instead.</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code>  <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span>
+    <span class="s2">"http://localhost:3000/products/&lt;product_id&gt;"</span><span class="p">,</span>
+    <span class="ss">authorization: </span><span class="s2">"Token &lt;auth_token&gt;"</span><span class="p">,</span>
+    <span class="ss">accept: :json</span>
+  <span class="p">)</span>
+</code></pre></div>
+<!-- ```shell
+curl "http://localhost:3000/products/<product_id>.json" \
+  -X DELETE \
+  -H "Authorization: Token <auth_token>"
+``` -->
+
+<blockquote>
+<p>The above command returns a status of 204 and NOTHING</p>
+</blockquote>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>DELETE http://localhost:3000/products/&lt;product_id&gt;</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*ID</td>
+<td>The ID of the Product to delete</td>
+</tr>
+</tbody></table>
+<h1 id='groups'>Groups</h1><h1 id='menus'>Menus</h1><h1 id='customers'>Customers</h1><h1 id='notifications'>Notifications</h1>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="elixir">elixir</a>
           </div>
       </div>
     </div>
